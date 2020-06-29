@@ -61,7 +61,7 @@ function manyCheck(pokerHand) {
     if(repeating.length==2){
         // var biggest=repeating.filter(x => x.repetitions==highestRepetition );
         // var smallest=repeating.filter(x => (x.repetitions!=highestRepetition)||0);
-        console.log("Repeating: "+repeating[0].repetitions);
+        // console.log("Repeating: "+repeating[0].repetitions);
         object = {quantity:repeating.length,highestRep:0,rep:{biggest:repeating[0],smallest:repeating[1]}};
         // if([...new Set(repeating.map(x => x.repetitions))].length >=2){
         //     object = {quantity:repeating.length,highestRep:0,rep:{biggest:repa,smallest:smallest.pop()}};
@@ -94,7 +94,7 @@ function manyCheck(pokerHand) {
 function evaluate(hand){
     const highest = Math.max.apply(Math,hand.map(x => x.value ));
     const many = manyCheck(hand);
-    console.log("Many: "+ many.rep.smallest.repetitions);
+    // console.log("Many: "+ many.rep.smallest.repetitions);
     if (isStraight(hand)){
         if(isFlush(hand)){
             
@@ -156,14 +156,14 @@ function evaluate(hand){
 
 
 // A hand is an array of 5 card objects
-var hand = {cards: [{value:6,suit:"S"},
-                    {value:6,suit:"C"},
+var hand = {cards: [{value:13,suit:"H"},
+                    {value:11,suit:"S"},
                     {value:10,suit:"C"},
-                    {value:10,suit:"D"},
-                    {value:13,suit:"D"}]};
+                    {value:6,suit:"H"},
+                    {value:3,suit:"D"}]};
 
-console.log("Straight: " + isStraight(hand.cards));
-console.log("Flush: " + isFlush(hand.cards));
-console.log("Biggest: " + manyCheck(hand.cards).differentOnes);
+// console.log("Straight: " + isStraight(hand.cards));
+// console.log("Flush: " + isFlush(hand.cards));
+// console.log("Biggest: " + manyCheck(hand.cards).differentOnes);
 console.log(evaluate(hand.cards));
 
