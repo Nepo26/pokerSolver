@@ -56,7 +56,8 @@ function manyCheck(pokerHand) {
 
 
 
-// A hand is an array of cards
+
+// A hand is an array of 5 card objects
 var hand = {cards: [{value:5,suit:"C"},{value:6,suit:"D"},{value:7,suit:"S"},
             {value:9,suit:"S"},{value:8,suit:"S"}]}
 console.log("Straight: " + isStraight(hand.cards));
