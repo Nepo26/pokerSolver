@@ -37,7 +37,7 @@ function isFlush(pokerHand) {
 /**
  * Check to how many of each hand card there is on hand.
  * @param {Array} pokerHand
- * @returns Array[Integer,{*}]
+ * @returns repeating
  */
 function manyCheck(pokerHand) {
     pokerHand.sort(function(a,b){return a[0] - b[0]});
@@ -48,13 +48,26 @@ function manyCheck(pokerHand) {
         console.log("Many ["+distinctCards[i]+"]="+(pokerHand.filter(hand => hand.value === distinctCards[i]).length));
 
         var repeatingQuantity = (-1 + pokerHand.filter(hand => hand.value === pokerHand[i].value).length);
-        var a = {value:pokerHand[i].value,repetitions:repeatingQuantity};
-        repeating.push(a);
+        repeating.push({value:pokerHand[i].value,repetitions:repeatingQuantity});
     }
-    return repeating;
+
+    repetitions = [...new Set(repeating.map(x => { if (x.repetitions >= 2) return x.repetitions } ))];
+    object = {quantity:repetitions.length,rep:repetitions}
+
+ 
+    console.log(object);
+    return object;
 }
 
+/**
+ *
+ * Evaluete 
+ * @param {*} hand
+ * @returns evaluation
+ */
+function evaluate(hand){
 
+}
 
 
 // A hand is an array of 5 card objects
@@ -62,5 +75,5 @@ var hand = {cards: [{value:5,suit:"C"},{value:6,suit:"D"},{value:7,suit:"S"},
             {value:9,suit:"S"},{value:8,suit:"S"}]}
 console.log("Straight: " + isStraight(hand.cards));
 console.log("Flush: " + isFlush(hand.cards));
-console.log("Deuces: " + manyCheck(hand.cards).length);
+console.log("Deuces: " + manyCheck(hand.cards));
 
