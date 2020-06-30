@@ -13,7 +13,7 @@ To start we need to determine the basics, which will be how this API will work. 
 - H - Hearts
 
 ### Ranks
-Then we need to say that a card name is made first of the ranks that it represents then its suit or symbol. The avaiable values are these:
+Then we need to say that a card name is made first of the ranks that it represents then its suit or symbol. The   available values are these:
 - A - Ace
 - 2 - Two
 - 3 - Three
@@ -29,14 +29,14 @@ Then we need to say that a card name is made first of the ranks that it represen
 - K - King
 
 ### Both
-Which makes a card is them both, for example 'King of hearts' is represented as KH.
+What makes a card is its Rank and its Suits, for example 'King of hearts' is represented as KH.
 
 ## Installing the pokersolver
 
 ### Simple Node.js
 - Download and install node.js and a package manager of a choice ( I will be using npm as the example)
 - Clone this [repository](https://github.com/Nepo26/pokerSolver.git)
-- Enter the diretory
+- Enter the directory
 - npm install
 - node src/app.js
 
@@ -46,7 +46,7 @@ Which makes a card is them both, for example 'King of hearts' is represented as 
 ### Docker
 
 #### Use the built-in docker-compose
-You can do as above and simply use 'docker-compose up' inside the diretory. It will then follow to build and run the program.
+You can do as above and simply use 'docker-compose up' inside the directory. It will then follow to build and run the program.
 
 #### Create a simple docker-compose
 Or you can create a simple docker-compose using my image on the cloud.
@@ -54,11 +54,11 @@ Or you can create a simple docker-compose using my image on the cloud.
     version: '3'
     services:
         pokersolver:
-        container_name: pokersolver
-        image: nepo26/pokersolver:latest
-        ports:
-            - "3000:3000"
-        restart: unless-stopped
+            container_name: pokersolver
+            image: nepo26/pokersolver:latest
+            ports:
+                - "3000:3000"
+            restart: unless-stopped
 ```
 
 #### Using docker run
@@ -66,6 +66,10 @@ Or even simpler using docker run as the following:
 ```bash 
     docker run --name pokersolver -p3000:3000 nepo26/pokersolver:latest
 ```
+
+## Querying the API
+
+For such what you just need to send a request to the root path with 2 parameters of cards, as exemplified below.
 
 
 

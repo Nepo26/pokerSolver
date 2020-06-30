@@ -5,7 +5,6 @@ const poker = require('../services/pokerLogic.js');
 const util = require('util');
 
 router.get('/', (req, res) => {
-    var query = req.query;
     if (JSON.stringify(req.query) == JSON.stringify({}) || req.query.length != 2 || req.query.length == undefined) {
         res.status(400);
         if (req.accepts('json')){
