@@ -72,5 +72,71 @@ The it will be running as a daemon.
 
 For such what you just need to send a request to the root path with 2 parameters of cards, as exemplified below.
 
+Request:
+http://localhost:3000?hand=10C,JC,QC,KC,AC&hand=KS,KD,QD,2D,3S
+
+Expected response:
+```json
+{
+    "winner": 1,
+    "evaluation": [
+        {
+            "name": "SF",
+            "points": 8,
+            "cards": [
+                {
+                    "value": "1",
+                    "suit": "C"
+                },
+                {
+                    "value": "10",
+                    "suit": "C"
+                },
+                {
+                    "value": "11",
+                    "suit": "C"
+                },
+                {
+                    "value": "12",
+                    "suit": "C"
+                },
+                {
+                    "value": "13",
+                    "suit": "C"
+                }
+            ]
+        },
+        {
+            "name": "P",
+            "points": 1,
+            "cards": [
+                {
+                    "value": "2",
+                    "suit": "D"
+                },
+                {
+                    "value": "3",
+                    "suit": "S"
+                },
+                {
+                    "value": "12",
+                    "suit": "D"
+                },
+                {
+                    "value": "13",
+                    "suit": "S"
+                },
+                {
+                    "value": "13",
+                    "suit": "D"
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+
 
 
