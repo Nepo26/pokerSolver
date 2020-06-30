@@ -3,8 +3,15 @@ version: '3.4'
 services:
   pokersolver:
     image: pokersolver
-    build: .
+    build:
+      context: .
+      args: 
+        - NODE_ENV=development
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
+    volumes:
+      - .:/opt/node_app/app:delegated
+      - ./package.json:/opt/node_app/package.json
+      - ./package-lock.json:/opt/node_app/package-lock.json
     ports:
-      - 3000
+      - 3000:3000
