@@ -64,8 +64,9 @@ Or you can create a simple docker-compose using my image on the cloud.
 #### Using docker run
 Or even simpler using docker run as the following:
 ```bash 
-    docker run --name pokersolver -p3000:3000 nepo26/pokersolver:latest
+    docker run --name pokersolver -p3000:3000 -d nepo26/pokersolver:latest
 ```
+The it will be running as a daemon.
 
 ## Querying the API
 
