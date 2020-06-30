@@ -15,6 +15,7 @@ const host = '0.0.0.0';
 const router = require('./routes/solving');
 const {notFound, errorHandler, logErrors} = require('./routes/errorHandling');
 const { Console } = require('console');
+const { Server } = require('http');
 
 
 app.use(router);
@@ -30,12 +31,22 @@ app.enable('trust proxy');
 app.set('title', 'Pokersolver');
 app.set('x-powered-by', false);
 
+var server = app.listen(port, () => console.log(`PokerSolver initiated. Running on http://${host}:${port}`));
+
+server.on('connection',function(socket){
+    socket.setTimeout(5*1000);
+});
+
+// Handle ^C
+process.on('SIGINT', shutdown);
 
 // To be able to stop with CTRL+C
-process.on('SIGINT',() =>{
-    console.info("Interrupted");
-    process.exit;
-})
+function shutdown(){
+    console.log('Graceful shutdown');
+    server.close(function(){
+        console.log('Closed pokersolver.');
+    });
+}
 
-app.listen(port, () => console.log(`PokerSolver initiated. Running on http://${host}:${port}`));
+
 
