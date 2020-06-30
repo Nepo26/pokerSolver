@@ -6,9 +6,16 @@ const util = require('util');
 
 router.get('/', (req, res) => {
     var query = req.query;
-    if (req.query.hand.length != 2) {
-        return res.status(400).send('Need to send 2 cards');
+    if (JSON.stringify(req.query) == JSON.stringify({}) || req.query.length != 2 || req.query.length == undefined) {
+        res.status(400);
+        if (req.accepts('json')){
+            res.json({errors: [{message:'Need to send 2 hands',code:1}]});
+            return;
+        }
+
+        res.type('txt').send('Need to send 2 hands');
     }
+
     var pokerHand = [];
     pokerHand[0] = new poker.PokerHand(req.query.hand[0]);
     pokerHand[1] = new poker.PokerHand(req.query.hand[1]);
