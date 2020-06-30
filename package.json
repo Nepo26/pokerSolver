@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Nepo26/pokerSolver#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jslint": "^0.12.1"
   }
 }

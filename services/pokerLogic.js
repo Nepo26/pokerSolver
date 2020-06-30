@@ -1,17 +1,19 @@
+/*jslint es6*/
+"use strict";
+const express = require("express");
+
+
+
 /**
  * Check to see if the hand has a sequence
  * @param {Array} pokerHand
  * @returns boolean
  */
-function isStraight(pokerHand) {    
-    pokerHand.sort(function(a,b){return a.value - b.value});
-    for(i=0;i<4;i++){
-        if(pokerHand[i].value+1 != pokerHand[i+1].value){
-            return false;
-        }
+function isStraight(pokerHand) {
+    pokerHand.sort(function(a,b){return a.value - b.value;});
+    for(var i=0;i<4;i+=1){
+        pokerHand[i].value+1 != pokerHand[i+1].value ? false : true;
     }
-    
-    return true;
 }
 
 
@@ -21,13 +23,9 @@ function isStraight(pokerHand) {
  * @returns boolean
  */
 function isFlush(pokerHand) {
-    for(i=0;i<4;i++){
-        if(pokerHand[i].suit != pokerHand[i+1].suit){
-            return false;
-        }
+    for(var i=0;i<4;i+=1){
+        pokerHand[i].suit != pokerHand[i+1].suit ? false : true
     }
-
-    return true;
 }
 
 
@@ -38,16 +36,17 @@ function isFlush(pokerHand) {
  */
 function manyCheck(pokerHand) {
     // All cards that are repeating
-    var repeating = new Array();
+    var repeating = [];
 
-    pokerHand.sort(function(a,b){return a[0] - b[0]});
+    pokerHand.sort(function(a,b){return a[0] - b[0];});
 
     // All cards without repeated ones
     var distinctCards = [...new Set(pokerHand.map(x => x.value))];
 
     // console.log("distintic: "+distinctCards.length);
     var quantityOfCards ;
-    for(i=0;i<distinctCards.length;i++){
+    var object;
+    for(var i=0;i<distinctCards.length;i+=1){
         quantityOfCards = pokerHand.filter(hand => hand.value === distinctCards[i]).length;
         if (quantityOfCards>=2){
             var tempRepeat = {value:distinctCards[i],repetitions:quantityOfCards}
@@ -79,25 +78,23 @@ function manyCheck(pokerHand) {
         }
         object = {quantity:repeating.length,differentOnes:false,rep:{biggest:biggest.pop(),smallest:{value:0,repetitions:0}}};
     }
-    
     // object = {quantity:repeating.length,highestRepetition:highestRepetition,rep:{biggest:,lowest:}repeating}
- 
     return object;
 }
 
 /**
  *
- * Evaluate 
+ * Evaluate
  * @param {*} hand
  * @returns evaluation
  */
 function evaluate(hand){
+    console.log(hand);
     const highest = Math.max.apply(Math,hand.map(x => x.value ));
     const many = manyCheck(hand);
     // console.log("Many: "+ many.rep.smallest.repetitions);
     if (isStraight(hand)){
         if(isFlush(hand)){
-            
             return {name:"SF",highest:highest};
             // Straight Flush
         }
@@ -108,7 +105,6 @@ function evaluate(hand){
     }
     else{
         // console.log("Not straight");
-        
         if(many.quantity!=0){
             // console.log("Repeat");
             if(many.rep.biggest.repetitions==4){
@@ -167,3 +163,6 @@ var hand = {cards: [{value:13,suit:"H"},
 // console.log("Biggest: " + manyCheck(hand.cards).differentOnes);
 console.log(evaluate(hand.cards));
 
+// modules.exports =
+
+module.exports.evaluateHand = evaluate;
