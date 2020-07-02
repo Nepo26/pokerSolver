@@ -31,22 +31,22 @@ app.enable('trust proxy');
 app.set('title', 'Pokersolver');
 app.set('x-powered-by', false);
 
-var server = app.listen(port, () => console.log(`PokerSolver initiated. Running on http://${host}:${port}`));
+app.listen(port, () => console.log(`PokerSolver initiated. Running on http://${host}:${port}`));
 
-server.on('connection',function(socket){
-    socket.setTimeout(5*1000);
-});
+// server.on('connection',function(socket){
+//     socket.setTimeout(5*1000);
+// });
 
-// Handle ^C
-process.on('SIGINT', shutdown);
+// // Handle ^C
+// process.on('SIGINT', shutdown);
 
-// To be able to stop with CTRL+C
-function shutdown(){
-    console.log('Graceful shutdown');
-    server.close(function(){
-        console.log('Closed pokersolver.');
-    });
-}
+// // To be able to stop with CTRL+C
+// function shutdown(){
+//     console.log('Graceful shutdown');
+//     server.close(function(){
+//         console.log('Closed pokersolver.');
+//     });
+// }
 
 
 

@@ -108,6 +108,7 @@ function isStraight(pokerHand) {
  */
 function isFlush(pokerHand) {
     var flush;
+    console.log(pokerHand.hand);
     for (var i = 0; i < 4; i += 1) {
         pokerHand[i].suit != pokerHand[i + 1].suit
             ? (flush = false)
@@ -221,7 +222,7 @@ function evaluate(pokerHand) {
                 }
             }
         } else {
-            if (isFlush(pokerHand)) {
+            if (isFlush(pokerHand.hand)) {
                 return new handEvaluation("F", 5, cards);
                 // Flush
             } else {

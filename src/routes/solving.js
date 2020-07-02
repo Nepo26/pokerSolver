@@ -5,7 +5,7 @@ const poker = require('../services/pokerLogic.js');
 const util = require('util');
 
 router.get('/', (req, res) => {
-    if (JSON.stringify(req.query) == JSON.stringify({}) || req.query.length != 2 || req.query.length == undefined) {
+    if (JSON.stringify(req.query.hand) == JSON.stringify({}) || req.query.hand.length != 2 || req.query.hand.length == undefined) {
         res.status(400);
         if (req.accepts('json')){
             res.json({errors: [{message:'Need to send 2 hands',code:1}]});
