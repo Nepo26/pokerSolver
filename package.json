@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Nepo26/pokerSolver#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jslint": "^0.12.1"
   }
 }
